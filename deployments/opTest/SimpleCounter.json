@@ -1,0 +1,95 @@
+{
+  "address": "0xA47789e8C1caC47Bd891e33C97cB3C6722037282",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newCounterValue",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "msgSender",
+          "type": "address"
+        }
+      ],
+      "name": "IncrementCounter",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "counter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "increment",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x17c444d510282ddd9c0c0fe1d35cd7657304b5f66fdcab01548ba5274e640825",
+  "receipt": {
+    "to": null,
+    "from": "0xB65540bBA534E88EB4a5062D0E6519C07063b259",
+    "contractAddress": "0xA47789e8C1caC47Bd891e33C97cB3C6722037282",
+    "transactionIndex": 1,
+    "gasUsed": "109573",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x727e7633ca2ba6d9dcba68183b596747fe62be5185e5b93f5d2badc8b88604c8",
+    "transactionHash": "0x17c444d510282ddd9c0c0fe1d35cd7657304b5f66fdcab01548ba5274e640825",
+    "logs": [],
+    "blockNumber": 641195,
+    "cumulativeGasUsed": "156474",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "83422fea2cc023990ef3464efc6bb3f0",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCounterValue\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"msgSender\",\"type\":\"address\"}],\"name\":\"IncrementCounter\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"counter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"increment\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/SimpleCounter.sol\":\"SimpleCounter\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/SimpleCounter.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity 0.8.18;\\n\\ncontract SimpleCounter {\\n    uint256 public counter;\\n\\n    event IncrementCounter(uint256 newCounterValue, address msgSender);\\n\\n    function increment() external {\\n        counter++;\\n        emit IncrementCounter(counter, msg.sender);\\n    }\\n}\\n\",\"keccak256\":\"0x003615ccca69f94974a1a88cf9fe49035f32adac67ae15d0000351b91132ee80\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610104806100206000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c806361bc221a146037578063d09de08a146051575b600080fd5b603f60005481565b60405190815260200160405180910390f35b60576059565b005b60008054908060668360a8565b9091555050600054604080519182523360208301527fd26752d6efe11773b4a85cdfa0b3fe9efa9707bd50024c7beaed659a141f7858910160405180910390a1565b60006001820160c757634e487b7160e01b600052601160045260246000fd5b506001019056fea264697066735822122010f04387a983ffe8ededa1884b4f768a8b48ea99f45a25b0499c798b08e6e34164736f6c63430008120033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c806361bc221a146037578063d09de08a146051575b600080fd5b603f60005481565b60405190815260200160405180910390f35b60576059565b005b60008054908060668360a8565b9091555050600054604080519182523360208301527fd26752d6efe11773b4a85cdfa0b3fe9efa9707bd50024c7beaed659a141f7858910160405180910390a1565b60006001820160c757634e487b7160e01b600052601160045260246000fd5b506001019056fea264697066735822122010f04387a983ffe8ededa1884b4f768a8b48ea99f45a25b0499c798b08e6e34164736f6c63430008120033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 3,
+        "contract": "contracts/SimpleCounter.sol:SimpleCounter",
+        "label": "counter",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
