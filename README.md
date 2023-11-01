@@ -37,9 +37,9 @@ As part of the Gelato Raas AA offerings, we have deployed a custom safe-sdk crea
 
 | Package| SDK |
 | --- | ----------- |
-| Safe Protocol Kit | gelato-raas-protocol-kit|
-| Safe AA Kit | gelato-raa-account-abstraction-kit|
-| Safe Relay Kit | gelato-raas-relay-kit|
+| Safe Protocol Kit | [gelato-raas-protocol-kit](https://www.npmjs.com/package/gelato-raas-protocol-kit)|
+| Safe AA Kit | [gelato-raas-account-abstraction-kit](https://www.npmjs.com/package/gelato-raas-account-abstraction-kit)|
+| Safe Relay Kit | [gelato-raas-relay-kit](https://www.npmjs.com/package/gelato-raas-relay-kit)|
 
  
 Here we are going to show the two different ways to send Gasless Transactions through a Safe, either sponsoring the gas with [1Balance](https://docs.gelato.network/developer-services/1balance) or paying with the Safe balance (SyncFee) 
