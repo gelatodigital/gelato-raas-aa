@@ -2,7 +2,7 @@
 # Gelato Raas Starter-Kit
 
 This starter helps to quick start developing on OpTest
-Please visit the public [website](https://raas.gelato.network/ryarnollups/details/public/optestnet) and the [Block explorer](https://blockscout.op-testnet.gelato.digital)
+Please visit the public [website](https://raas.gelato.network/rollups/details/public/optestnet) and the [Block explorer](https://blockscout.op-testnet.gelato.digital)
 
 ## Funding
 You would need Sepolia test Eth. Please go to one of these faucets and grab some eth:
