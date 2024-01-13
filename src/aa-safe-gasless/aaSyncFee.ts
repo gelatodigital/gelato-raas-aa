@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { GelatoRelayPack } from "gelato-raas-relay-kit";
+import { GelatoRelayPack, RelayPack } from "gelato-raas-relay-kit";
 import {
   MetaTransactionData,
   MetaTransactionOptions,
@@ -18,13 +18,14 @@ console.log(__dirname);
 
 import ContractInfo from "./ABI.json";
 
-let RPC_URL = "https://rpc.op-testnet.gelato.digital";
+let RPC_URL ="https://rpc.zKatana.gelato.digital"//"https://rpc.op-testnet.gelato.digital";// "https://rpc.unreal.gelato.digital"//
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);
 
+
 const relayPack = new GelatoRelayPack();
 
-const targetAddress = "0x47A9064a8D242860ABb43FC8340B3680487CC088";
+const targetAddress = "0xEEeBe2F778AA186e88dCf2FEb8f8231565769C27";
 
 const nftContract = new ethers.Contract(
   targetAddress,
@@ -34,7 +35,7 @@ const nftContract = new ethers.Contract(
 
 async function relayTransaction() {
 
-  const gasLimit = "10000000";
+  const gasLimit = "1000000000";
 
 
   const safeTransactionData: MetaTransactionData = {

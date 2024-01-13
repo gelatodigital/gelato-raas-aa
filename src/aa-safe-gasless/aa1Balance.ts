@@ -14,11 +14,12 @@ import * as dotenv from "dotenv";
 
 dotenv.config({ path: ".env" });
 
-console.log(__dirname);
-
 import ContractInfo from "./ABI.json";
 
-let RPC_URL = "https://rpc.op-testnet.gelato.digital";
+let RPC_URL =  "https://rpc.unreal.gelato.digital"
+// ZKATANA RPC_URL = "https://rpc.zkatana.gelato.digital";
+// OP Testnet RPC_URL = "https://rpc.op-testnet.gelato.digital";
+
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
@@ -28,7 +29,7 @@ const GELATO_RELAY_API_KEY = process.env.GELATO_RELAY_API_KEY;
 
 const relayPack = new GelatoRelayPack(GELATO_RELAY_API_KEY);
 
-const targetAddress = "0x47A9064a8D242860ABb43FC8340B3680487CC088" 
+const targetAddress = "0xEEeBe2F778AA186e88dCf2FEb8f8231565769C27"
 
 const counterContract = new ethers.Contract(
   targetAddress,

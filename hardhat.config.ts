@@ -6,31 +6,27 @@ import "@nomicfoundation/hardhat-chai-matchers";
 import "@nomiclabs/hardhat-ethers";
 import "@typechain/hardhat";
 import "hardhat-deploy";
+import "@nomiclabs/hardhat-etherscan";
+import "@nomiclabs/hardhat-ethers";
+
 
 // Process Env Variables
 import * as dotenv from "dotenv";
 dotenv.config({ path: __dirname + "/.env" });
 
 const PK = process.env.PK;
-const ALCHEMY_ID = process.env.ALCHEMY_ID;
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+
 
 // HardhatUserConfig bug
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const config: HardhatUserConfig = {
-  // web3 functions
-  // w3f: {
-  //   rootDir: "./web3-functions",
-  //   debug: false,
-  //   networks: ["hardhat", "mumbai"], //(multiChainProvider) injects provider for these networks
-  // },
-  // hardhat-deploy
+
   namedAccounts: {
     deployer: {
       default: 0,
     },
   },
-  defaultNetwork: "opTest",
+  defaultNetwork: "unreal",
 
   networks: {
     hardhat: {
@@ -39,7 +35,11 @@ const config: HardhatUserConfig = {
         blockNumber: 92,
       },
     },
-
+    unreal: {
+      accounts: PK ? [PK] : [],
+      chainId: 18231,
+      url: `https://rpc.unreal.gelato.digital`,
+    },
     zKatana: {
       accounts: PK ? [PK] : [],
       chainId: 1261120,
@@ -69,10 +69,20 @@ const config: HardhatUserConfig = {
   },
 
   // hardhat-deploy
-  verify: {
-    etherscan: {
-      apiKey: ETHERSCAN_API_KEY ? ETHERSCAN_API_KEY : "",
+  etherscan: {
+    apiKey: {
+      unreal: 'your API key'
     },
+    customChains: [
+      {
+        network: "unreal",
+        chainId: 18231,
+        urls: {
+          apiURL: "https://unreal.blockscout.com/api",
+          browserURL: "https://unreal.blockscout.com"
+        }
+      }
+    ]
   },
 };
 
