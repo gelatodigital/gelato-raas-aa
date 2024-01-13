@@ -1,8 +1,7 @@
 
-# Gelato Raas Starter-Kit
+# Gelato Raas Account Abstraction with Safe
 
-This starter helps to quick start developing on OpTest
-Please visit the public [website](https://raas.gelato.network/rollups/details/public/optestnet) and the [Block explorer](https://blockscout.op-testnet.gelato.digital)
+This starter helps to quick start developing on Gelato Raas with Safe account Abstraction
 
 ## Funding
 You would need Sepolia test Eth. Please go to one of these faucets and grab some eth:
@@ -11,7 +10,7 @@ You would need Sepolia test Eth. Please go to one of these faucets and grab some
 - [Infura Faucet](https://www.infura.io/faucet/sepolia)
 - [pow Faucet](https://sepolia-faucet.pk910.de/)
 
-Once you have Sepolia Eth you will have to bridge to OpTest eth. Please login in on Sepolia chain and brigde the required amount, it will take 8-10 minuts to confirm.
+Once you have Sepolia Eth you will have to bridge to your Gelato Rollup
 
 
 
@@ -41,15 +40,15 @@ As part of the Gelato Raas AA offerings, we have deployed a custom safe-sdk crea
 | Safe AA Kit | [gelato-raas-account-abstraction-kit](https://www.npmjs.com/package/gelato-raas-account-abstraction-kit)|
 | Safe Relay Kit | [gelato-raas-relay-kit](https://www.npmjs.com/package/gelato-raas-relay-kit)|
 
-In the [Raas AA UI starter Kit](https://github.com/gelatodigital/gelato-raas-op-ui-starter) we showcase how to implement AA with web3Auth for social login, Safe as smart contract wallet and Gelato Relay for Gasless transactions.
-A live demo on zKatana can be seen here:
- [https://gelato-raas-op-ui.web.app/](https://gelato-raas-op-ui.web.app/)
+In the [Raas AA UI](https://github.com/gelatodigital/gelato-raas-aa) we showcase how to implement AA with web3Auth for social login, Safe as smart contract wallet and Gelato Relay for Gasless transactions.
+A live demo can be seen here:
+ [https://gelato-raas-aa.web.app/](https://gelato-raas-aa.web.app/)
  
-Here we are going to show the two different ways to send Gasless Transactions through a Safe, either sponsoring the gas with [1Balance](https://docs.gelato.network/developer-services/1balance) or paying with the Safe balance (SyncFee) 
+Here we are going to show the how to send Gasless Transactions through a Safe sponsoring the gas with [1Balance](https://docs.gelato.network/developer-services/1balance) 
 
-In both examples we are going to `increment()`the counter on this simple contract deployed on OpTest [https://blockscout.op-testnet.gelato.digital/address/0xA47789e8C1caC47Bd891e33C97cB3C6722037282](https://blockscout.op-testnet.gelato.digital/address/0xA47789e8C1caC47Bd891e33C97cB3C6722037282)
+In both examples we are going to `increment()`the counter on this simple contract deployed on all Gelato Rollups at "0xEEeBe2F778AA186e88dCf2FEb8f8231565769C27"
 
-### Using 1Balance
+### Code 
 
 ```typescript
 const safeAccountAbstraction = new AccountAbstraction(signer);
@@ -99,70 +98,10 @@ const safeAccountAbstraction = new AccountAbstraction(signer);
 { isSafeDeployed: true }
 ```
 
-### Using  SyncFee  
-Remember to fund your Safe as the gas fees will be deducted from your safe balance
-
-```typescript
-
-  const gasLimit = "10000000";
-  
-  const safeAccountAbstraction = new AccountAbstraction(signer);
-  const sdkConfig: AccountAbstractionConfig = {
-    relayPack,
-  };
-  await safeAccountAbstraction.init(sdkConfig);
-
-  const txConfig = {
-    TO: targetAddress,
-    DATA: counterContract.interface.encodeFunctionData("increment", []),,
-    VALUE: "0",
-    // Options:
-    GAS_LIMIT: gasLimit,
-    GAS_TOKEN: ethers.constants.AddressZero,
-  };
-
-  const predictedSafeAddress = await safeAccountAbstraction.getSafeAddress();
-  console.log({ predictedSafeAddress });
-
-  const isSafeDeployed = await safeAccountAbstraction.isSafeDeployed();
-  console.log({ isSafeDeployed });
-
-  const safeTransactions: MetaTransactionData[] = [
-    {
-      to: txConfig.TO,
-      data: txConfig.DATA,
-      value: txConfig.VALUE,
-      operation: OperationType.Call,
-    },
-  ];
-  const options: MetaTransactionOptions = {
-    gasLimit: txConfig.GAS_LIMIT,
-    gasToken: txConfig.GAS_TOKEN,
-    isSponsored: false,
-  };
-
-  const response = await safeAccountAbstraction.relayTransaction(
-    safeTransactions,
-    options
-  );
-  console.log(`https://relay.gelato.digital/tasks/status/${response} `);
-```
-
-  **Output**
-  ```shell
-$ ts-node src/aa-safe-gasless/aaSyncFee.ts
-/Users/javiermac/Documents/GELATO/20-RAAS/gelato-raas-starter/src/aa-safe-gasless
-{ predictedSafeAddress: '0xf35EAc5DA7d808264a9c7B1C19E2946201320522' }
-{ isSafeDeployed: true }
-https://relay.gelato.digital/tasks/status/0xf5ec5234b97a42a3fa32a1593dc34e44130b6801d9fff9ad1246f65cda0f8ecc 
-✨  Done in 24.41s.
-```
-
 ## Working with Safes
 
 We have deployed and verified the the Safe contracts and also we forked the safe sdk to be able to test in OpTest. 
-The forked safe-sdk is published under the package  **gelato-raas-protocol-kit@1.3.1**. The relay-kit and account.abstraction-kit will be published very soon.
-
+The forked safe-sdk is published under the package  **gelato-raas-protocol-kit@1.0.4**. The relay-kit and account.abstraction-kit will be published very soon.
 
 
 ### Create a Safe
@@ -181,7 +120,7 @@ Safe created with address:  0xf35EAc5DA7d808264a9c7B1C19E2946201320522
 ```
 
 ### Increment counter
-We have deployed a [SimpleCounter](https://blockscout.op-testnet.gelato.digital/address/0xA47789e8C1caC47Bd891e33C97cB3C6722037282) contract  where we are going to increment the counter through a safe transaciton.
+We have deployed a SimpleCounter contract at "0xEEeBe2F778AA186e88dCf2FEb8f8231565769C27" where we are going to increment the counter through a safe transaciton.
 Here the [code](./src/safe/increment-counter.ts#L35) 
 
 ```shell

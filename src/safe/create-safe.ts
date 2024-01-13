@@ -11,7 +11,7 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
 
-let RPC_URL = "https://rpc.unreal.gelato.digital" //"https://rpc.op-testnet.gelato.digital";
+let RPC_URL = "https://rpc.unreal.gelato.digital" 
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);
