@@ -40,7 +40,7 @@ As part of the Gelato Raas AA offerings, we have deployed a custom safe-sdk crea
 | Safe AA Kit | [gelato-raas-account-abstraction-kit](https://www.npmjs.com/package/gelato-raas-account-abstraction-kit)|
 | Safe Relay Kit | [gelato-raas-relay-kit](https://www.npmjs.com/package/gelato-raas-relay-kit)|
 
-In the [Raas AA UI](https://github.com/gelatodigital/gelato-raas-aa) we showcase how to implement AA with web3Auth for social login, Safe as smart contract wallet and Gelato Relay for Gasless transactions.
+In the [Raas AA UI](https://github.com/gelatodigital/gelato-raas-aa-ui) we showcase how to implement AA with web3Auth for social login, Safe as smart contract wallet and Gelato Relay for Gasless transactions.
 A live demo can be seen here:
  [https://gelato-raas-aa.web.app/](https://gelato-raas-aa.web.app/)
  
