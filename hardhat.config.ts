@@ -26,13 +26,12 @@ const config: HardhatUserConfig = {
       default: 0,
     },
   },
-  defaultNetwork: "unreal",
+  defaultNetwork: "hardhat",
 
   networks: {
     hardhat: {
       forking: {
-        url: `https://rpc.zkatana.gelato.digital`,
-        blockNumber: 92,
+        url: "https://rpc.op-celestia-testnet.gelato.digital",
       },
     },
     unreal: {
@@ -50,12 +49,17 @@ const config: HardhatUserConfig = {
       chainId: 42069,
       url: `https://rpc.op-testnet.gelato.digital`,
     },
+    gelopcelestiatestnet: {
+      accounts: PK ? [PK] : [],
+      chainId: 123420111,
+      url: "https://rpc.op-celestia-testnet.gelato.digital",
+    },
   },
 
   solidity: {
     compilers: [
       {
-        version: "0.8.18",
+        version: "0.8.23",
         settings: {
           optimizer: { enabled: true, runs: 200 },
         },
