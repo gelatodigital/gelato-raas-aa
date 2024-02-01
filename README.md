@@ -34,7 +34,7 @@ In the [Raas AA UI](https://github.com/gelatodigital/gelato-raas-aa-ui) we showc
 A live demo can be seen here:
  [https://gelato-raas-aa.web.app/](https://gelato-raas-aa.web.app/)
  
-Here we are going to show the how to send Gasless Transactions through a Safe sponsoring the gas with [1Balance] (https://docs.gelato.network/developer-services/1balance)or paying with the Safe balance (SyncFee) 
+Here we are going to show the how to send Gasless Transactions through a Safe sponsoring the gas with [1Balance] remote removes(https://docs.gelato.network/developer-services/1balance)or paying with the Safe balance (SyncFee) 
 
 In both examples we are going to `increment()`the counter on this simple contract deployed on all Gelato Rollups at "0xEEeBe2F778AA186e88dCf2FEb8f8231565769C27"
 
