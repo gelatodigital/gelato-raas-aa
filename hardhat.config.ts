@@ -26,12 +26,12 @@ const config: HardhatUserConfig = {
       default: 0,
     },
   },
-  defaultNetwork: "hardhat",
+  defaultNetwork: "liskSepolia",
 
   networks: {
     hardhat: {
       forking: {
-        url: "https://rpc.op-celestia-testnet.gelato.digital",
+        url: "https://rpc.sepolia-api.lisk.com",
       },
     },
     unreal: {

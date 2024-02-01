@@ -3,16 +3,6 @@
 
 This starter helps to quick start developing on Gelato Raas with Safe account Abstraction
 
-## Funding
-You would need Sepolia test Eth. Please go to one of these faucets and grab some eth:
-
-- [Alchemy Faucet](https://sepoliafaucet.com/)
-- [Infura Faucet](https://www.infura.io/faucet/sepolia)
-- [pow Faucet](https://sepolia-faucet.pk910.de/)
-
-Once you have Sepolia Eth you will have to bridge to your Gelato Rollup
-
-
 
 ## Getting Started
 
@@ -44,11 +34,11 @@ In the [Raas AA UI](https://github.com/gelatodigital/gelato-raas-aa-ui) we showc
 A live demo can be seen here:
  [https://gelato-raas-aa.web.app/](https://gelato-raas-aa.web.app/)
  
-Here we are going to show the how to send Gasless Transactions through a Safe sponsoring the gas with [1Balance](https://docs.gelato.network/developer-services/1balance) 
+Here we are going to show the how to send Gasless Transactions through a Safe sponsoring the gas with [1Balance] (https://docs.gelato.network/developer-services/1balance)or paying with the Safe balance (SyncFee) 
 
 In both examples we are going to `increment()`the counter on this simple contract deployed on all Gelato Rollups at "0xEEeBe2F778AA186e88dCf2FEb8f8231565769C27"
 
-### Code 
+### Using 1Balance
 
 ```typescript
 const safeAccountAbstraction = new AccountAbstraction(signer);
@@ -97,6 +87,64 @@ const safeAccountAbstraction = new AccountAbstraction(signer);
 { predictedSafeAddress: '0xf35EAc5DA7d808264a9c7B1C19E2946201320522' }
 { isSafeDeployed: true }
 ```
+
+### Using  SyncFee  
+Remember to fund your Safe as the gas fees will be deducted from your safe balance
+
+```typescript
+
+  const gasLimit = "10000000";
+  
+  const safeAccountAbstraction = new AccountAbstraction(signer);
+  const sdkConfig: AccountAbstractionConfig = {
+    relayPack,
+  };
+  await safeAccountAbstraction.init(sdkConfig);
+
+  const txConfig = {
+    TO: targetAddress,
+    DATA: counterContract.interface.encodeFunctionData("increment", []),,
+    VALUE: "0",
+    // Options:
+    GAS_LIMIT: gasLimit,
+    GAS_TOKEN: ethers.constants.AddressZero,
+  };
+
+  const predictedSafeAddress = await safeAccountAbstraction.getSafeAddress();
+  console.log({ predictedSafeAddress });
+
+  const isSafeDeployed = await safeAccountAbstraction.isSafeDeployed();
+  console.log({ isSafeDeployed });
+
+  const safeTransactions: MetaTransactionData[] = [
+    {
+      to: txConfig.TO,
+      data: txConfig.DATA,
+      value: txConfig.VALUE,
+      operation: OperationType.Call,
+    },
+  ];
+  const options: MetaTransactionOptions = {
+    gasLimit: txConfig.GAS_LIMIT,
+    gasToken: txConfig.GAS_TOKEN,
+    isSponsored: false,
+  };
+
+  const response = await safeAccountAbstraction.relayTransaction(
+    safeTransactions,
+    options
+  );
+  console.log(`https://relay.gelato.digital/tasks/status/${response} `);
+```
+
+  **Output**
+  ```shell
+ $ ts-node src/aa-safe-gasless/aaSyncFee.ts
+{ predictedSafeAddress: '0x68D60c586763879c6614e2eFA709cCae708203c4' }
+{ isSafeDeployed: true }
+https://relay.gelato.digital/tasks/status/0x6590f89386d9adb8a6d20ba7dffaa17958d4e66d49e6a0d3b5b1c144022abbc1 
+  ```
+
 
 ## Working with Safes
 

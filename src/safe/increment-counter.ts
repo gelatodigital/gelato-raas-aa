@@ -15,12 +15,12 @@ dotenv.config({ path: ".env" });
 
 import ContractInfo from "../../deployments/opTest/SimpleCounter.json";
 
-let RPC_URL = "https://rpc.unreal.gelato.digital"
+let RPC_URL ="https://rpc.sepolia-api.lisk.com" 
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);
 
-let safeAddress = "YOUR SAFE ADDRESS ";
+let safeAddress = "0x68D60c586763879c6614e2eFA709cCae708203c4";
 
 const targetAddress = "0xEEeBe2F778AA186e88dCf2FEb8f8231565769C27"
 
@@ -80,7 +80,7 @@ async function incrementCounter() {
     signedSafeTx.encodedSignatures(),
   ]);
 
-console.log(signedSafeTx)
+
 
   let tx = await signer.sendTransaction({
     value: 0,

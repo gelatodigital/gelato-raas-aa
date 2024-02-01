@@ -17,20 +17,15 @@ dotenv.config({ path: ".env" });
 console.log(__dirname);
 
 import ContractInfo from "./ABI.json";
-
-let RPC_URL = "https://rpc.sepolia-api.lisk.com"
-
+let RPC_URL = `https://rpc.sepolia-api.lisk.com`;
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
-
 const signer = new ethers.Wallet(process.env.PK!, provider);
 
-const GELATO_RELAY_API_KEY = process.env.GELATO_RELAY_API_KEY;
+const relayPack = new GelatoRelayPack();
 
-const relayPack = new GelatoRelayPack(GELATO_RELAY_API_KEY);
+const targetAddress = "0x66947a2221683f47BcDCE563C24DfD986156664A";
 
-const targetAddress = "0xEEeBe2F778AA186e88dCf2FEb8f8231565769C27" 
-
-const counterContract = new ethers.Contract(
+const nftContract = new ethers.Contract(
   targetAddress,
   ContractInfo.abi,
   signer
@@ -38,21 +33,29 @@ const counterContract = new ethers.Contract(
 
 async function relayTransaction() {
 
-  const gasLimit = "10000000";
-  
+  const gasLimit = "1000000000";
+
+
+  const safeTransactionData: MetaTransactionData = {
+    to: targetAddress,
+    data: nftContract.interface.encodeFunctionData("increment", []),
+    value: "0",
+    operation: OperationType.Call,
+  };
+
   const safeAccountAbstraction = new AccountAbstraction(signer);
   const sdkConfig: AccountAbstractionConfig = {
     relayPack,
   };
   await safeAccountAbstraction.init(sdkConfig);
 
-  // Create a transaction object
   const txConfig = {
     TO: targetAddress,
-    DATA:counterContract.interface.encodeFunctionData("increment", []),
+    DATA: safeTransactionData.data,
+    VALUE: "0",
     // Options:
     GAS_LIMIT: gasLimit,
-    VALUE:"0"
+    GAS_TOKEN: ethers.constants.AddressZero,
   };
 
   const predictedSafeAddress = await safeAccountAbstraction.getSafeAddress();
@@ -70,8 +73,9 @@ async function relayTransaction() {
     },
   ];
   const options: MetaTransactionOptions = {
-    gasLimit: (txConfig.GAS_LIMIT),
-    isSponsored: true,
+    gasLimit: txConfig.GAS_LIMIT,
+    gasToken: txConfig.GAS_TOKEN,
+    isSponsored: false,
   };
 
   const response = await safeAccountAbstraction.relayTransaction(
