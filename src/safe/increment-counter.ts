@@ -13,9 +13,9 @@ import * as dotenv from "dotenv";
 
 dotenv.config({ path: ".env" });
 
-import ContractInfo from "../../deployments/opTest/SimpleCounter.json";
+import ContractInfo from "../aa-safe-gasless/ABI.json";
 
-let RPC_URL ="https://rpc.sepolia-api.lisk.com" 
+let RPC_URL ="https://rpc.reya-cronos.gelato.digital" 
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);

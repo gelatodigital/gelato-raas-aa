@@ -39,6 +39,16 @@ const config: HardhatUserConfig = {
       chainId: 18231,
       url: `https://rpc.unreal.gelato.digital`,
     },
+    liskSepolia: {
+      accounts: PK ? [PK] : [],
+      chainId: 4203,
+      url: `https://rpc.sepolia-api.lisk.com"`,
+    },
+    reyaCronos: {
+      accounts: PK ? [PK] : [],
+      chainId: 1729,
+      url: `https://rpc.reya-cronos.gelato.digital`,
+    },
     zKatana: {
       accounts: PK ? [PK] : [],
       chainId: 1261120,

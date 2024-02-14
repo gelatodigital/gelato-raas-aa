@@ -18,7 +18,7 @@ console.log(__dirname);
 
 import ContractInfo from "./ABI.json";
 
-let RPC_URL = "https://rpc.sepolia-api.lisk.com"
+let RPC_URL = "https://rpc.reya-cronos.gelato.digital"
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
@@ -73,6 +73,8 @@ async function relayTransaction() {
     gasLimit: (txConfig.GAS_LIMIT),
     isSponsored: true,
   };
+
+  console.log(safeTransactions)
 
   const response = await safeAccountAbstraction.relayTransaction(
     safeTransactions,

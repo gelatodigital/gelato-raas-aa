@@ -17,7 +17,7 @@ dotenv.config({ path: ".env" });
 console.log(__dirname);
 
 import ContractInfo from "./ABI.json";
-let RPC_URL = `https://rpc.sepolia-api.lisk.com`;
+let RPC_URL = `https://rpc.reya-cronos.gelato.digital`;
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);
 
@@ -33,7 +33,7 @@ const nftContract = new ethers.Contract(
 
 async function relayTransaction() {
 
-  const gasLimit = "1000000000";
+  const gasLimit = "10000000";
 
 
   const safeTransactionData: MetaTransactionData = {

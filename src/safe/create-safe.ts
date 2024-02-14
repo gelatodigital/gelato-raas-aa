@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 // import { GelatoRelayPack } from "gelato-relay-kit";
 import Safe, {
   EthersAdapter,
@@ -11,7 +11,7 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
 
-let RPC_URL = "https://rpc.sepolia-api.lisk.com" 
+let RPC_URL = "https://rpc.reya-cronos.gelato.digital" 
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);
@@ -33,13 +33,14 @@ async function createSafe() {
       threshold: 1,
       // ... (Optional params)
     };
-
-    const safeSdkOwner1 = await safeFactory.deploySafe({ safeAccountConfig });
+    let saltNonce  = "1000000"
+    const safeSdkOwner1 = await safeFactory.deploySafe({ safeAccountConfig,saltNonce });
 
     let safeAddress = await safeSdkOwner1.getAddress();
 
     console.log("Safe created with address: ", safeAddress);
   } catch (error) {
+    // will throw error uf safe is already created
     console.log(error);
   }
 }
